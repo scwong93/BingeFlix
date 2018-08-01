@@ -10,9 +10,9 @@ function showPopularMovies() {
         let movieList = document.getElementById('movie-list');
         let results = responseText.results;
         results.map(movie => {
-          let li = document.createElement('li');
-          li.innerHTML = movie.original_name;
-          movieList.append(li);
+          let div = document.createElement('div');
+          div.innerHTML = movie.original_name;
+          movieList.append(div);
         })
       }
     })
@@ -32,16 +32,16 @@ function searchMovies() {
           results.map(movie => {
             let movieId = movie.id;
             let a = document.createElement('a');
-            let li = document.createElement('li');
+            let div = document.createElement('div');
             fetch(`https://api.themoviedb.org/3/tv/${movieId}?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&format=json`)
               .then(function (response) {
                 return response.json();
               }).then(function (responseText) {
                 if (responseText) {
                   let homepage = responseText.homepage;
-                  li.innerHTML = movie.original_name;
+                  div.innerHTML = movie.original_name;
                   a.setAttribute('href', homepage);
-                  a.append(li);
+                  a.append(div);
                   let imagePath = `http://image.tmdb.org/t/p/w185/${responseText.poster_path}`;
                   let img = document.createElement('img');
                   img.setAttribute('src', imagePath);
