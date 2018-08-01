@@ -20,15 +20,16 @@ function showPopularMovies() {
 
 function searchMovies() {
   let input = document.getElementById('searchBar').value;
+  let movieList = document.getElementById('movie-list');
   if (input) {
     fetch(`https://api.themoviedb.org/3/search/tv?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&query=${input}&page=1&format=json`)
       .then(function (response) {
         return response.json();
       }).then(function (responseText) {
-        if (responseText) {
-          let movieList = document.getElementById('movie-list');
+        if (responseText.total_results > 0) {
+          console.log(responseText);
+          movieList.innerHTML = "";
           let results = responseText.results;
-          console.log(results);
           results.map(movie => {
             let movieId = movie.id;
             let a = document.createElement('a');
@@ -40,16 +41,27 @@ function searchMovies() {
                 if (responseText) {
                   let homepage = responseText.homepage;
                   div.innerHTML = movie.original_name;
-                  a.setAttribute('href', homepage);
-                  a.append(div);
+                  if (homepage) {
+                    a.setAttribute('href', homepage);
+                    a.append(div);
+                  } else {
+                    a.append(div);
+                  }
                   let imagePath = `http://image.tmdb.org/t/p/w185/${responseText.poster_path}`;
-                  let img = document.createElement('img');
-                  img.setAttribute('src', imagePath);
-                  a.append(img);
+                  let imgTag = document.createElement('img');
+                  if (responseText.poster_path) {
+                    imgTag.setAttribute('src', imagePath);
+                    a.append(imgTag);
+                  } else {
+                    imgTag.setAttribute('src', 'https://www.puc.edu/__data/assets/image/0014/4172/no_photo.jpg');
+                    a.append(imgTag);
+                  }
                   movieList.append(a);
                 }
               })
           })
+        } else {
+          movieList.innerHTML = "No movies found."
         }
       });
     }
