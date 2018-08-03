@@ -4,12 +4,13 @@
     <title>BingeFlix</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body onload="showPopularMovies()">
-    <input type="text" id="searchBar" onkeyup="fireEnterKey()" placeholder="Search movies by name">
-    <button type="submit" id="searchButton" onclick="searchMovies()"><i class="fa fa-search"></i></button>
+  <body onload="test.showPopularMovies()">
+    <input type="text" id="searchBar" onkeyup="test.fireEnterKey(event)" placeholder="Search movies by name">
+    <button type="submit" id="searchButton" onclick="test.searchMovies()"><i class="fa fa-search"></i></button>
     <div id="movie-list"></div>
 
 
     <script type="text/javascript" src="index.js"></script>
+    <script src="test/test.js"></script>
   </body>
 </html>

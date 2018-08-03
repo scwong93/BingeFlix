@@ -1,8 +1,10 @@
 'use strict';
 
+let test = {};
+
 let movieList = document.getElementById('movie-list');
 
-function showPopularMovies() {
+test.showPopularMovies = function() {
   fetch("https://api.themoviedb.org/3/discover/tv?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&sort_by=popularity.desc&page=1&format=json")
     .then(function (response) {
       return response.json();
@@ -43,7 +45,7 @@ function showPopularMovies() {
     })
 }
 
-function searchMovies() {
+test.searchMovies = function() {
   let input = document.getElementById('searchBar').value;
   if (input) {
     fetch(`https://api.themoviedb.org/3/search/tv?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&query=${input}&page=1&format=json`)
@@ -90,8 +92,10 @@ function searchMovies() {
     }
 }
 
-function fireEnterKey() {
+test.fireEnterKey = function(event) {
   let input = document.getElementById('searchBar').value;
   if (event.keyCode == 13 && input)
     document.getElementById('searchButton').click();
 }
+
+module.exports = test;
