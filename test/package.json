@@ -1,7 +1,9 @@
 {
   "requires": true,
   "lockfileVersion": 1,
-  "dependencies": {},
+  "dependencies": {
+    "node-fetch": "^2.2.0"
+  },
   "name": "bingeflix",
   "version": "1.0.0",
   "description": "show discovery app",
