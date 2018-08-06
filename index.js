@@ -2,10 +2,10 @@
 
 let test = {};
 
-let movieList = document.getElementById('movie-list');
 
 test.showPopularMovies = function() {
-  fetch("https://api.themoviedb.org/3/discover/tv?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&sort_by=popularity.desc&page=1&format=json")
+  let movieList = document.getElementById('movie-list');
+  fetch('https://api.themoviedb.org/3/discover/tv?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&sort_by=popularity.desc&page=1&format=json')
     .then(function (response) {
       return response.json();
     }).then(function (responseText) {
@@ -50,6 +50,7 @@ test.showPopularMovies = function() {
 }
 
 test.searchMovies = function() {
+  let movieList = document.getElementById('movie-list');
   let input = document.getElementById('searchBar').value;
   if (input) {
     fetch(`https://api.themoviedb.org/3/search/tv?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&query=${input}&page=1&format=json`)
@@ -57,7 +58,7 @@ test.searchMovies = function() {
         return response.json();
       }).then(function (responseText) {
         if (responseText.total_results > 0) {
-          movieList.innerHTML = "";
+          movieList.innerHTML = '';
           let results = responseText.results;
           results.map(movie => {
             let movieId = movie.id;
@@ -90,7 +91,7 @@ test.searchMovies = function() {
               })
           })
         } else {
-          movieList.innerHTML = "No movies found."
+          movieList.innerHTML = 'No movies found.'
         }
       });
     }
