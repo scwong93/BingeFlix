@@ -64,29 +64,33 @@ test.searchMovies = function() {
             let movieId = movie.id;
             let a = document.createElement('a');
             let div = document.createElement('div');
+            div.setAttribute('class', 'movie');
             fetch(`https://api.themoviedb.org/3/tv/${movieId}?api_key=fb6a1d3f38c3d97f67df6d141f936f29&language=en-US&format=json`)
               .then(function (response) {
                 return response.json();
               }).then(function (responseText) {
                 if (responseText) {
                   let homepage = responseText.homepage;
-                  div.innerHTML = movie.original_name;
+                  let p = document.createElement('p');
+                  p.setAttribute('class', 'title');
+                  p.innerHTML = movie.original_name;
+                  a.append(p);
                   if (homepage) {
                     a.setAttribute('href', homepage);
-                    a.append(div);
+                    div.append(a);
                   } else {
-                    a.append(div);
+                    div.append(a);
                   }
                   let imagePath = `http://image.tmdb.org/t/p/w185/${responseText.poster_path}`;
-                  let imgTag = document.createElement('img');
+                  let img = document.createElement('img');
                   if (responseText.poster_path) {
-                    imgTag.setAttribute('src', imagePath);
-                    a.append(imgTag);
+                    img.setAttribute('src', imagePath);
+                    a.append(img);
                   } else {
-                    imgTag.setAttribute('src', 'https://www.puc.edu/__data/assets/image/0014/4172/no_photo.jpg');
-                    a.append(imgTag);
+                    img.setAttribute('src', 'https://www.puc.edu/__data/assets/image/0014/4172/no_photo.jpg');
+                    a.append(img);
                   }
-                  movieList.append(a);
+                  movieList.append(div);
                 }
               })
           })

@@ -6,8 +6,10 @@
     <link rel='stylesheet' href='main.css'>
   </head>
   <body onload='test.showPopularMovies()'>
-    <input type='text' id='searchBar' onkeyup='test.fireEnterKey(event)' placeholder='Search movies by name'>
-    <button type='submit' id='searchButton' onclick='test.searchMovies()'><i class='fa fa-search'></i></button>
+    <div id='search'>
+      <input type='text' id='searchBar' onkeyup='test.fireEnterKey(event)' placeholder='Search movies by name'>
+      <button type='submit' id='searchButton' onclick='test.searchMovies()'><i class='fa fa-search'></i></button>
+    </div>
     <div id='movie-list'></div>
 
 
