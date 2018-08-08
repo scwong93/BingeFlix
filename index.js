@@ -28,10 +28,8 @@ test.showPopularMovies = function() {
                 a.append(p);
                 if (homepage) {
                   a.setAttribute('href', homepage);
-                  div.append(a);
-                } else {
-                  div.append(a);
                 }
+                div.append(a);
                 let imagePath = `http://image.tmdb.org/t/p/w185/${responseText.poster_path}`;
                 let img = document.createElement('img');
                 if (responseText.poster_path) {
